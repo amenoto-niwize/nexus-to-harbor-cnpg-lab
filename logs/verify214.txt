@@ -1,0 +1,30 @@
+15:01:37 == 재실행(멱등성)
+  15:01:39 docker 결과: 복사 0 / 건너뜀 7 / 실패 0
+  15:01:39 helm 결과: push 0 / 건너뜀 6 / 실패 0
+15:01:39 == Harbor 가 본 아티팩트 종류
+   [('CHART', ['0.2.0'], '50d302a0bb29'), ('CHART', ['0.1.0'], '46c54d185630')]
+15:01:39 == helm 클라이언트(OCI): 버전 목록은 'helm search repo' 대신 Harbor API
+15:01:41   helm pull oci:// 6개 → 원본과 바이트 동일 6 / 불일치 0
+15:01:41   helm show chart: name: h27a version: 0.2.0 
+15:01:41 == 클러스터 배포(차트도 이미지도 Harbor 2.14 에서)
+  STATUS: deployed
+15:01:43   pod: 1/1 Running / imageID: sha256:63ffc0d1f14e
+15:01:45   서비스: 200
+15:02:05   pybase: pybase-ok aarch64
+15:02:21   multi:1 repoDigest: 255f00252d7201f6 arm64
+15:02:46 == 로봇 vs admin: 저장소 목록 API
+15:02:46   robot → 403 {"errors":[{"code":"FORBIDDEN","message":"forbidden"}]}
+15:02:46   admin → 200 [{"artifact_count":2,"creation_time":"2026-11-03T06:01:07.826Z","id":8,"name":"charts/h27c","project
+15:02:46   (로봇으로 아티팩트 목록은) 200
+15:03:45 [h214-short15] 타임라인(같은 상태 묶음: 횟수 시작시각 상태)
+    12 15:02:47 pull=200 api=200 push=ok
+    11 15:03:09 pull=401 api=500 push=fail
+    10 15:03:21 pull=200 api=200 push=ok
+  pull  실패  11/33  (15:03:09 ~ 15:03:20)
+  api   실패  11/33  (15:03:09 ~ 15:03:20)
+  push  실패  11/33  (15:03:09 ~ 15:03:20)
+15:03:45 == 백업(pg_dump 무중단)
+15:03:46   덤프 157164 bytes / 행수: project|3 repository|9 artifact|14 schema|170 
+15:03:46 == 최종 Harbor 내용
+  dlops: [('dlops/app1', 1), ('dlops/app2', 1), ('dlops/multi', 1), ('dlops/probe', 1), ('dlops/pybase', 1), ('dlops/web', 1)]
+  charts: [('charts/h27a', 2), ('charts/h27b', 2), ('charts/h27c', 2)]

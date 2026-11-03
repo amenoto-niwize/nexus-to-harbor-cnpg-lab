@@ -1,0 +1,64 @@
+# Harbor chart 1.18.0 (Harbor 2.14.0, ChartMuseum 없음 → helm 은 OCI) + 외부 DB = CloudNativePG(harbor-pg)
+# 랩(cp1 arm64): 이미지 ghcr.io/octohelm/harbor/*:v2.14.0 (arm64 빌드). containerd 가 ghcr.io → 172.16.141.10:5000 미러.
+# 운영(amd64): 이미지 블록을 모두 지우고 차트 기본값(goharbor/*:v2.15.4, chart 1.19.4)을 쓴다. 나머지 키는 동일.
+expose:
+  type: nodePort
+  tls:
+    enabled: false
+  nodePort:
+    name: harbor
+    ports:
+      http:
+        port: 80
+        nodePort: 30004
+externalURL: http://172.16.141.11:30004
+
+# 관리자 비밀번호: values 에 쓰지 않고 미리 만든 Secret 을 참조 (chart ≥1.17)
+existingSecretAdminPassword: harbor-admin
+existingSecretAdminPasswordKey: HARBOR_ADMIN_PASSWORD
+
+persistence:
+  enabled: true
+  resourcePolicy: "keep"
+  persistentVolumeClaim:
+    registry:   {storageClass: local-path, size: 5Gi}
+    jobservice:
+      jobLog:   {storageClass: local-path, size: 1Gi}
+    redis:      {storageClass: local-path, size: 1Gi}
+    trivy:      {storageClass: local-path, size: 1Gi}
+
+# ---- DB: CNPG ----
+database:
+  type: external
+  external:
+    host: harbor-pg-rw.harbor-cnpg.svc
+    port: "5432"
+    username: harbor
+    coreDatabase: registry
+    existingSecret: harbor-pg-app     # CNPG 생성 Secret, 키 'password'
+    sslmode: require
+  maxIdleConns: 10
+  maxOpenConns: 50                    # 차트 기본 900 → PG max_connections(200) 안으로
+
+trivy:   {enabled: false}
+metrics: {enabled: false}
+
+nginx:
+  image: {repository: ghcr.io/octohelm/harbor/nginx-photon, tag: v2.14.0}
+portal:
+  image: {repository: ghcr.io/octohelm/harbor/harbor-portal, tag: v2.14.0}
+core:
+  image: {repository: ghcr.io/octohelm/harbor/harbor-core, tag: v2.14.0}
+jobservice:
+  image: {repository: ghcr.io/octohelm/harbor/harbor-jobservice, tag: v2.14.0}
+registry:
+  registry:
+    image: {repository: ghcr.io/octohelm/harbor/registry-photon, tag: v2.14.0}
+  controller:
+    image: {repository: ghcr.io/octohelm/harbor/harbor-registryctl, tag: v2.14.0}
+redis:
+  type: internal
+  internal:
+    image: {repository: ghcr.io/octohelm/harbor/redis-photon, tag: v2.14.0}
+exporter:
+  image: {repository: ghcr.io/octohelm/harbor/harbor-exporter, tag: v2.14.0}

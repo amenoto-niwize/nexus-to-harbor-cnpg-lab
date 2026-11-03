@@ -1,0 +1,47 @@
+10:40:29 == CNPG primary 파드 삭제(DB 장애 흉내, 단일 인스턴스)
+10:42:35 DB 복구까지 126s (phase=Waiting for the instances to become active)
+10:42:57 == 장애 구간 응답(초 단위 프로브)
+  manifest   총 132회, 비정상 0회 
+  api        총 132회, 비정상 132회 구간 10:40:21~10:42:55 코드 [('403', 132)]
+  chartindex 총 132회, 비정상 0회 
+10:42:58 Harbor 파드 재시작 여부: harborcnpg-chartmuseum-6fc68c7b9-4kzx7:0 harborcnpg-core-58fcdf4c5d-lsscf:0 harborcnpg-jobservice-5959c9d4fd-qns27:2 harborcnpg-nginx-99df5c67c-42cvg:0 harborcnpg-portal-fd9d66597-jcmbk:0 harborcnpg-redis-0:0 harborcnpg-registry-74866fccb-hhg72:0 
+10:43:37 CNPG 정상 복귀: 10:43:37 phase=Cluster in healthy state
+10:44:00 == 시간대별 결과 (2초 간격)
+   2 10:43:34 manifest=401 api=401 push=fail pg=false
+   7 10:43:39 manifest=200 api=200 push=ok pg=true
+10:44:43 ===== [default] CNPG 파드 삭제
+10:47:56 [default] 옛 파드 종료까지 182s, 새 파드 ready 까지 193s
+10:48:20 [default] 타임라인(같은 상태 묶음: 횟수 시작시각 상태)
+   105 10:44:37 pull=200 api=200 push=ok
+    11 10:47:45 pull=401 api=401 push=fail
+     9 10:47:57 pull=200 api=200 push=ok
+  pull  실패  11/125  (10:47:45 ~ 10:47:56)
+  api   실패  11/125  (10:47:45 ~ 10:47:56)
+  push  실패  11/125  (10:47:45 ~ 10:47:56)
+10:48:53 ===== [short15] CNPG 파드 삭제
+10:49:21 [short15] 옛 파드 종료까지 16s, 새 파드 ready 까지 28s
+10:49:45 [short15] 타임라인(같은 상태 묶음: 횟수 시작시각 상태)
+    12 10:48:47 pull=200 api=200 push=ok
+     1 10:49:08 pull=200 api=401 push=fail
+     3 10:49:18 pull=401 api=401 push=fail
+    10 10:49:21 pull=200 api=200 push=ok
+  pull  실패   3/26  (10:49:18 ~ 10:49:20)
+  api   실패   4/26  (10:49:08 ~ 10:49:20)
+  push  실패   4/26  (10:49:08 ~ 10:49:20)
+10:50:07 ===== 백업(pg_dump -Fc, Harbor 무중단)
+10:50:07 덤프 크기: 156297 bytes
+10:50:07 원본 행수: project|3 repository|6 artifact|8 tag|150 robot|1 harbor_user|2 schema|100 
+10:50:28 복구용 클러스터 harbor-pg-restore: Cluster in healthy state (20s)
+10:50:28 pg_restore 종료코드: 
+10:50:28 복구본 행수: project|3 repository|6 artifact|8 tag|150 robot|1 harbor_user|2 schema|100 
+10:50:28 복구본 소유자: harbor|49 
+10:50:28 복구용 클러스터 삭제
+15:02:53 ===== [h214-short15] CNPG 파드 삭제
+15:03:21 [h214-short15] 옛 파드 종료까지 16s, 새 파드 ready 까지 28s
+15:03:45 [h214-short15] 타임라인(같은 상태 묶음: 횟수 시작시각 상태)
+    12 15:02:47 pull=200 api=200 push=ok
+    11 15:03:09 pull=401 api=500 push=fail
+    10 15:03:21 pull=200 api=200 push=ok
+  pull  실패  11/33  (15:03:09 ~ 15:03:20)
+  api   실패  11/33  (15:03:09 ~ 15:03:20)
+  push  실패  11/33  (15:03:09 ~ 15:03:20)

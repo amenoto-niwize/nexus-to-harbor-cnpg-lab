@@ -1,0 +1,5 @@
+15:00:15 Harbor 버전: v2.14.0-44a74424 | chartmuseum: None
+15:00:15 프로젝트 dlops → 201
+15:00:15 프로젝트 charts → 201
+15:00:15 로봇 생성: robot$migrator (비밀값은 scratchpad/hc.robot214)
+15:00:15 프로젝트: ['charts', 'dlops', 'library']

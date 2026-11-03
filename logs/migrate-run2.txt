@@ -1,0 +1,18 @@
+10:36:51 ===== 1. docker: docker-hosted → 172.16.141.11:30004
+10:36:51 원본 이미지 태그 수: 6
+10:36:58 docker 결과: 복사 6 / 건너뜀 0 / 실패 0
+  dlops/app1:1.0	OK	4bdb4ac63839→4bdb4ac63839
+  dlops/app1:1.1	OK	4bdb4ac63839→4bdb4ac63839
+  dlops/app1:latest	OK	4bdb4ac63839→4bdb4ac63839
+  dlops/app2:2.0	OK	5ca6a002c5c3→5ca6a002c5c3
+  dlops/multi:1	OK	ba1199205458→ba1199205458
+  dlops/pybase:3.12	OK	5642cb13b1fc→5642cb13b1fc
+10:36:58 ===== 2. helm: helm-hosted → http://172.16.141.11:30004/chartrepo/charts
+10:36:58 원본 차트 버전 수: 6
+10:36:58 helm 결과: 업로드 6 / 건너뜀 0 / 실패 0
+  h27a-0.1.0	OK	cdb81a8a8ba0
+  h27a-0.2.0	OK	ea4853550813
+  h27b-0.1.0	OK	324fa6487e29
+  h27b-0.2.0	OK	bcf0ede95910
+  h27c-0.1.0	OK	bec5a0c44191
+  h27c-0.2.0	OK	5eb727251a72

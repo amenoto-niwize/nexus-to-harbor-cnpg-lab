@@ -1,0 +1,20 @@
+15:00:55 ===== 1. docker: docker-hosted → 172.16.141.11:30004
+15:00:55 원본 이미지 태그 수: 7
+15:01:04 docker 결과: 복사 7 / 건너뜀 0 / 실패 0
+  dlops/app1:1.0	OK	4bdb4ac63839→4bdb4ac63839
+  dlops/app1:1.1	OK	4bdb4ac63839→4bdb4ac63839
+  dlops/app1:latest	OK	4bdb4ac63839→4bdb4ac63839
+  dlops/app2:2.0	OK	5ca6a002c5c3→5ca6a002c5c3
+  dlops/multi:1	OK	ba1199205458→ba1199205458
+  dlops/pybase:3.12	OK	5642cb13b1fc→5642cb13b1fc
+  dlops/web:1.0	OK	63ffc0d1f14e→63ffc0d1f14e
+15:01:04 ===== 2. helm(OCI): helm-hosted → oci://172.16.141.11:30004/charts
+15:01:04 원본 차트 버전 수: 6
+15:01:04 helm registry login OK
+15:01:08 helm 결과: push 6 / 건너뜀 0 / 실패 0
+  h27a-0.1.0	OK oci-digest=46c54d185630	tgz=cdb81a8a8ba0
+  h27a-0.2.0	OK oci-digest=50d302a0bb29	tgz=ea4853550813
+  h27b-0.1.0	OK oci-digest=79d5c4008f53	tgz=324fa6487e29
+  h27b-0.2.0	OK oci-digest=72c6bc7f2218	tgz=bcf0ede95910
+  h27c-0.1.0	OK oci-digest=39a855482a7a	tgz=bec5a0c44191
+  h27c-0.2.0	OK oci-digest=4d1b44d7969f	tgz=5eb727251a72

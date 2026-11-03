@@ -1,0 +1,21 @@
+10:37:36 == helm 클라이언트 (v4.3.0+gbec5b06)
+"hbcharts" has been added to your repositories
+NAME         	CHART VERSION	APP VERSION	DESCRIPTION                
+hbcharts/h27a	0.2.0        	1.16.0     	A Helm chart for Kubernetes
+hbcharts/h27a	0.1.0        	1.16.0     	A Helm chart for Kubernetes
+hbcharts/h27b	0.2.0        	1.16.0     	A Helm chart for Kubernetes
+hbcharts/h27b	0.1.0        	1.16.0     	A Helm chart for Kubernetes
+hbcharts/h27c	0.2.0        	1.16.0     	A Helm chart for Kubernetes
+hbcharts/h27c	0.1.0        	1.16.0     	A Helm chart for Kubernetes
+10:37:37 helm pull 결과: 원본과 바이트 동일 6 / 불일치 0
+10:37:37 index.yaml digest 필드 확인: {'h27a': [('0.2.0', 'ea4853550813'), ('0.1.0', 'cdb81a8a8ba0')], 'h27b': [('0.2.0', 'bcf0ede95910'), ('0.1.0', '324fa6487e29')], 'h27c': [('0.2.0', '5eb727251a72'), ('0.1.0', 'bec5a0c44191')]}
+10:38:44 == 클러스터 배포: Harbor 차트(hbcharts/h27a 0.2.0) + Harbor 이미지(dlops/web:1.0)
+STATUS: deployed
+REVISION: 1
+  pod web-h27a-694dfb4787-krbr6 1/1 Running
+10:38:47   이미지(실제로 받은 digest): 172.16.141.11:30004/dlops/web@sha256:63ffc0d1f14e4082b832c6a42e606e9a0384a526f16ddd720af7c1f018f2f7c4
+10:38:59   서비스 응답: 200pod "curlt" deleted from migtest namespace
+10:38:59 == 클러스터 배포 2: dlops/pybase:3.12 실행
+10:39:24   py 로그: pybase-ok aarch64 3.12.16 / 상태: Succeeded
+10:39:24 == 멀티아치: 노드가 고른 아키 digest
+10:39:40   multi:1 imageID:  이벤트: Scheduled Pulling Pulled Failed Pulled Failed 

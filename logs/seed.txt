@@ -1,0 +1,19 @@
+10:34:09 == docker 이미지
+10:34:10   docker: dlops/app1:1.0 ← dir:scratch/zalp
+10:34:10   docker: dlops/app1:1.1 ← dir:scratch/zalp
+10:34:10   docker: dlops/app1:latest ← dir:scratch/zalp
+10:34:10   docker: dlops/app2:2.0 ← dir:scratch/zalp
+10:34:12   docker: dlops/multi:1 ← docker://localhost:35500/cs/multi:1
+10:34:13   실패 dlops/pybase:3.12: time="2026-11-03T10:34:13+09:00" level=fatal msg="choosing an image from manifest list docker://python:3.12-alpine: no image found in image index for 
+10:34:13 == helm 차트 (3종 × 2버전)
+10:34:13   helm: h27a-0.1.0.tgz (5017 B, sha256 cdb81a8a8ba0) → 200
+10:34:13   helm: h27a-0.2.0.tgz (5016 B, sha256 ea4853550813) → 200
+10:34:14   helm: h27b-0.1.0.tgz (5018 B, sha256 324fa6487e29) → 200
+10:34:14   helm: h27b-0.2.0.tgz (5018 B, sha256 bcf0ede95910) → 200
+10:34:14   helm: h27c-0.1.0.tgz (5018 B, sha256 bec5a0c44191) → 200
+10:34:14   helm: h27c-0.2.0.tgz (5018 B, sha256 5eb727251a72) → 200
+10:34:14 == 원본 목록(정답지)
+  docker-hosted: 5 컴포넌트 → [('dlops/app1', '1.0'), ('dlops/app1', '1.1'), ('dlops/app1', 'latest'), ('dlops/app2', '2.0'), ('dlops/multi', '1')]
+  helm-hosted: 6 컴포넌트 → [('h27a', '0.1.0'), ('h27a', '0.2.0'), ('h27b', '0.1.0'), ('h27b', '0.2.0'), ('h27c', '0.1.0'), ('h27c', '0.2.0')]
+10:34:27   docker: dlops/pybase:3.12 ← docker.io/library/python:3.12-alpine (linux/arm64)
+10:38:23   docker: dlops/web:1.0 ← docker.io/library/nginx:1.27-alpine (증분 시험용, 1차 이관 뒤 추가)

@@ -1,0 +1,4 @@
+10:35:02 프로젝트 dlops → 201 (201=생성, 409=이미 있음)
+10:35:02 프로젝트 charts → 201 (201=생성, 409=이미 있음)
+10:35:02 로봇 생성: robot$migrator (secret 은 scratchpad/hc.robot 에만 저장)
+10:35:02 프로젝트 목록: [('charts', 'false'), ('dlops', 'false'), ('library', 'true')]

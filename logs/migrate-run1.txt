@@ -1,0 +1,18 @@
+10:35:40 ===== 1. docker: docker-hosted → 172.16.141.11:30004
+10:35:40 원본 이미지 태그 수: 6
+10:35:59 docker 결과: 복사 0 / 건너뜀 0 / 실패 6
+  dlops/app1:1.0	FAIL time="2026-11-03T10:35:43+09:00" level=fatal msg="trying to reuse blob sha256:550f8bf8502cef18df2424	4bdb4ac63839→e3b0c44298fc
+  dlops/app1:1.1	FAIL time="2026-11-03T10:35:46+09:00" level=fatal msg="trying to reuse blob sha256:550f8bf8502cef18df2424	4bdb4ac63839→e3b0c44298fc
+  dlops/app1:latest	FAIL time="2026-11-03T10:35:49+09:00" level=fatal msg="trying to reuse blob sha256:550f8bf8502cef18df2424	4bdb4ac63839→e3b0c44298fc
+  dlops/app2:2.0	FAIL time="2026-11-03T10:35:53+09:00" level=fatal msg="trying to reuse blob sha256:550f8bf8502cef18df2424	5ca6a002c5c3→e3b0c44298fc
+  dlops/multi:1	FAIL time="2026-11-03T10:35:56+09:00" level=fatal msg="copying image 1/2 from manifest list: trying to re	ba1199205458→e3b0c44298fc
+  dlops/pybase:3.12	FAIL time="2026-11-03T10:35:59+09:00" level=fatal msg="trying to reuse blob sha256:d3531b7a4f217bdc3426c5	5642cb13b1fc→e3b0c44298fc
+10:35:59 ===== 2. helm: helm-hosted → http://172.16.141.11:30004/chartrepo/charts
+10:35:59 원본 차트 버전 수: 6
+10:36:19 helm 결과: 업로드 0 / 건너뜀 0 / 실패 6
+  h27a-0.1.0	UPLOAD_401 {"errors":[{"code":"UNAUTHORIZED","message":"UnAuthorized"}]}	cdb81a8a8ba0
+  h27a-0.2.0	UPLOAD_401 {"errors":[{"code":"UNAUTHORIZED","message":"UnAuthorized"}]}	ea4853550813
+  h27b-0.1.0	UPLOAD_401 {"errors":[{"code":"UNAUTHORIZED","message":"UnAuthorized"}]}	324fa6487e29
+  h27b-0.2.0	UPLOAD_401 {"errors":[{"code":"UNAUTHORIZED","message":"UnAuthorized"}]}	bcf0ede95910
+  h27c-0.1.0	UPLOAD_401 {"errors":[{"code":"UNAUTHORIZED","message":"UnAuthorized"}]}	bec5a0c44191
+  h27c-0.2.0	UPLOAD_401 {"errors":[{"code":"UNAUTHORIZED","message":"UnAuthorized"}]}	5eb727251a72

@@ -1,0 +1,35 @@
+# Harbor 전용 PostgreSQL (CloudNativePG)
+# 랩: 단일 노드라 instances: 1. 운영은 3 (+ 노드 분산) 권장.
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: harbor-pg
+  namespace: harbor-cnpg
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.15-minimal-bookworm   # containerd 미러로 내부 레지스트리에서 받음
+  primaryUpdateStrategy: unsupervised
+  # Harbor 는 커넥션 풀을 계속 쥐고 있어 '스마트 종료'가 스스로 끝나지 않는다 → 기본 180초를 그냥 기다림.
+  # 단일 인스턴스면 줄여서 재시작 시간을 단축(실측: 기본 182초 → 아래 값).
+  smartShutdownTimeout: 15
+
+  # Harbor core 가 쓰는 DB 하나를 처음부터 만든다.
+  #   DB 이름 registry / 소유자 harbor
+  #   비밀번호는 CNPG 가 생성해 Secret harbor-pg-app (키: username, password) 에 넣는다.
+  bootstrap:
+    initdb:
+      database: registry
+      owner: harbor
+
+  postgresql:
+    parameters:
+      max_connections: "200"        # Harbor core/jobservice/exporter 커넥션 풀 합계 여유
+      shared_buffers: "128MB"
+
+  storage:
+    storageClass: local-path
+    size: 2Gi
+
+  resources:
+    requests: {cpu: 100m, memory: 256Mi}
+    limits:   {memory: 512Mi}
